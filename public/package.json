@@ -1,0 +1,28 @@
+{
+  "name": "com.kbcorp.kooking",
+  "version": "1.0.0",
+  "description": "A cooking and recipe website",
+  "main": "./bin/www",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "keywords": [
+    "cooking",
+    "recipe",
+    "food",
+    "fun"
+  ],
+  "author": "akalidas",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.1.1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "http-errors": "^1.7.2",
+    "nodemon": "^1.18.10"
+  },
+  "devDependencies": {
+    "@types/node": "^11.9.5"
+  }
+}

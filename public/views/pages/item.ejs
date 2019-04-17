@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- views/partials/head.ejs -->
+    <title><%= data.title %></title>
+    <% include ../partials/head %>
+</head>
+
+<body>
+<!--  logo of the brand here-->
+<header class="banner">
+    <!-- views/partials/header.ejs -->
+    <% include ../partials/header %>
+</header>
+<!-- The user specific menu goes here -->
+<!-- views/partials/user-navigation.ejs -->
+<% include ../partials/user-navigation %>
+
+<main class="main-categories">
+    <!-- views/partials/site-navigation.ejs -->
+    <% include ../partials/site-navigation %>
+    <div class="breadcrumb-navigation">
+        <ul class="breadcrumb">
+            <li><a href="/index">Home</a></li>
+            <li><a href="/categories">Categories</a></li>
+            <li><a href="#">Item</a></li>
+        </ul>
+    </div>
+    <div class="card-row home-card">
+        <div class="card-container">
+            <div class="card home-card">
+                <% if (data==undefined) {%>
+                    <p>404</p>
+                <% } else { %>
+                <div class="media-div">
+                        <img alt="A plate with lot of blueberry muffins" class="item-detail-card-img" src="<%= data.item.imageURL %>">
+                        <div id="recipe-title">
+                            <h2><b><%= data.item.itemName %></b></h2>
+                            <h3 id="category"><em>Meal Type</em> : <%= data.item.mealType %></h3><br>
+                            <ul id="rating-star">
+                                <%
+                                for(var i=0; i < data.item.rating; i++){ %>
+                                    <li><i class="fa fa-star"></i></li>
+                                <% }%>
+                            </ul>
+                        </div>
+                </div>
+                <div id="save-n-rate">
+                    <button class="btn" onclick="location.href = '/myitems';" type="button"><i class="fa fa-heart"></i> Save it</button>
+                    <button class="btn" type="button" onclick="location.href = '/feedback';"><i class="fa fa-star"></i> Rate it!</button>
+                </div>
+                <div id="main-content">
+                    <div class="intro">
+                        <h3>About</h3>
+                        <br>
+                        <p>
+                            <%= data.item.description %>
+                        </p>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="detail-1">
+                        <h3 class="intro">Ingredients</h3>
+                        <br>
+                        <ul>
+                            <%
+                            for(var i=0; i < data.item.ingredients.length; i++) { %>
+                                <li><%= data.item.ingredients[i] %></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="detail-1">
+                        <h3 >Directions</h3>
+                        <br>
+                        <ul>
+                            <%
+                            for(var i=0; i < data.item.directions.length; i++) { %>
+                                <li><%= data.item.directions[i] %></li>
+                            <% } %>
+                        </ul>
+                        <br>
+                    </div>
+                </div>
+                <button class="btn" type="button" onclick="location.href = '/categories';">Continue browsing</button>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <!-- views/partials/footer.ejs -->
+    <% include ../partials/footer %>
+</footer>
+</body>
+</html>

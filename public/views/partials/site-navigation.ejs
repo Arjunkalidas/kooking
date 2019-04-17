@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<!-- views/partials/site-navigation.ejs -->
+<aside>
+    <ul class="sidebar_nav">
+        <li class="main-nav-link <% if(data.title== "Home"){%>ui-tabs-active<%}%>" onclick="location.href='/index'">Home</li>
+        <li class="main-nav-link <% if(data.title== "Categories"){%>ui-tabs-active<%}%>"  onclick="location.href='/categories'">Categories</li>
+        <li class="main-nav-link"  onclick="location.href='/index'">Store</li>
+        <li class="main-nav-link <% if(data.title== "About Us"){%>ui-tabs-active<%}%>" onclick="location.href='/about'">About</li>
+        <li class="main-nav-link <% if(data.title== "Contact Us"){%>ui-tabs-active<%}%>" onclick="location.href='/contact'">Contact Us</li>
+        <li class="main-nav-link"  onclick="location.href='/index'">Sign out</li>
+    </ul>
+</aside>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- views/partials/head.ejs -->
+    <title><%= data.title %></title>
+    <% include ../partials/head %>
+</head>
+
+<body>
+<!--  logo of the brand here-->
+<header class="banner">
+    <!-- views/partials/header.ejs -->
+    <% include ../partials/header %>
+</header>
+
+<!-- The user specific menu goes here -->
+<!-- views/partials/user-navigation.ejs -->
+<% include ../partials/user-navigation %>
+
+<main class="main-categories">
+    <!-- views/partials/site-navigation.ejs -->
+    <% include ../partials/site-navigation %>
+
+    <div class="card-row">
+        <div class="card-container">
+            <div class="card home-card">
+                <h3 id="welcome-msg"><b>Don't be a stranger</b></h3>
+                <h3 id="hello-text"><b>Just say hello.</b></h3>
+                <div class="card-container">
+                    <div id="home-para">
+                        <h6>Need help?</h6>
+                        <h5>akalidas@kooking.com</h5>
+                        <p id="business-msg">
+                            Feel free to get in touch with me. I am always open to discussing new recipes, creative ideas
+                            or opportunities to be part of your visions.</p>
+                        <h6>Feel like talking?</h6>
+                        <h5>+1-(970)-287-9095</h5>
+                    </div>
+                </div>
+
+                <div id="comment-form">
+                    <form action="#">
+                        <input type="text" name="name" placeholder="Name" class="form-input" required><br>
+                        <input type="email" name="email" placeholder="Email Address" class="form-input" required><br>
+                        <input type="tel" name="phone" placeholder="Telephone Number" class="form-input"><br>
+                        <input list="reasons" placeholder="Select any" class="form-input" required>
+                        <datalist id="reasons">
+                            <option value="Acquaintance">Acquaintance</option>
+                            <option value="Report an Issue">Report an Issue</option>
+                            <option value="Business Collaboration">Business Collaboration</option>
+                            <option value="Feedback">Feedback</option>
+                        </datalist><br>
+                        <textarea name="message" rows="10" cols="50" placeholder="Your message for us"></textarea><br>
+                        <input type="submit" value="Submit" class="btn btn-space">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <!-- views/partials/footer.ejs -->
+    <% include ../partials/footer %>
+</footer>
+</body>
+</html>

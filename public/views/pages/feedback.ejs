@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- views/partials/head.ejs -->
+    <title><%= data.title %></title>
+    <% include ../partials/head %>
+</head>
+
+<body>
+<!--  logo of the brand here-->
+<header class="banner">
+    <!-- views/partials/header.ejs -->
+    <% include ../partials/header %>
+</header>
+
+<!-- The user specific menu goes here -->
+<!-- views/partials/user-navigation.ejs -->
+<% include ../partials/user-navigation %>
+
+<main class="main-categories">
+    <!-- views/partials/site-navigation.ejs -->
+    <% include ../partials/site-navigation %>
+    <div class="card-row home-card">
+        <div class="card-container">
+            <div class="card home-card">
+                <h4><strong>Give your feedback</strong></h4>
+                <div class="media-div media-div-feedback">
+                    <img alt="A plate with lot of blueberry muffins" class="item-detail-card-img" src="assets/images/Blueberry-Muffins.jpg">
+                </div>
+                <div id="recipe-title-feedback">
+                    <h2><b>Blueberry Muffin</b></h2>
+                    <h3 class="feedback-cat">Pastry</h3>
+                    <p class="feedback-desc">You will melt into this buttery sweet blueberry muffin.
+                        It will go with your evening dose of tea or a cafe mocha.
+                    </p>
+                    <input list="rating" placeholder="Select any" class="form-input" required>
+                    <datalist id="rating">
+                        <option value="1 star ★"></option>
+                        <option value="2 star ★★"></option>
+                        <option value="3 star ★★★"></option>
+                        <option value="4 star ★★★★"></option>
+                        <option value="5 star ★★★★★"></option>
+                    </datalist><br>
+                    <textarea name="title" cols="50" placeholder="Title"></textarea><br>
+                    <textarea name="description" rows="10" cols="50" placeholder="Description"></textarea><br>
+                    <input type="submit" value="Confirm Rating" class="btn btn-space"><br>
+                    <input type="checkbox" name="selection" value="I made it" class="btn-space"> I made it<br>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <!-- views/partials/footer.ejs -->
+    <% include ../partials/footer %>
+</footer>
+</body>
+
+</html>

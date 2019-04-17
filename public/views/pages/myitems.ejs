@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- views/partials/head.ejs -->
+    <title><%= data.title %></title>
+    <% include ../partials/head %>
+</head>
+
+<body>
+<!--  logo of the brand here-->
+<header class="banner">
+    <!-- views/partials/header.ejs -->
+    <% include ../partials/header %>
+</header>
+
+<!-- The user specific menu goes here -->
+<!-- views/partials/user-navigation.ejs -->
+<% include ../partials/user-navigation %>
+
+<main class="main-categories">
+    <!-- views/partials/site-navigation.ejs -->
+    <% include ../partials/site-navigation %>
+
+    <div class="card-row home-card">
+        <div class="card-container">
+            <div class="card home-card">
+                <div>
+                    <h2 id="user-name">My Recipe Book</h2>
+                </div>
+                <br>
+                <br>
+                <div id="bookmark-table">
+                    <table class="recipe-collection">
+                        <tr>
+                            <th>Recipe</th>
+                            <th>Category</th>
+                            <th>My Rating</th>
+                            <th>Made it</th>
+                            <th>
+                            </th>
+                            <th></th>
+                        </tr>
+                        <%
+                        for(var i=0; i< data.items.length; i++){ %>
+                        <tr>
+                            <td><a href="/myitems/item/<%= data.items[i].itemCode %>"><i class="fa fa-bookmark padright"></i><%= data.items[i].itemName %></a></td>
+                            <td><%= data.items[i].catalogCategory %></td>
+                            <td><ul>
+                                    <%
+                                    for(var j=0; j < data.items[i].rating; j++){ %>
+                                        <li><i class="fa fa-star"></i></li>
+                                    <% }%>
+                                </ul></td>
+                            <td><input type="checkbox" name="madeit_or_not" value="madeit"><br></td>
+                            <td><button class="btn update-btn" onclick="location.href = '/feedback';" type="button">Update</button></td>
+                            <td><button class="btn delete-btn" onclick="location.href = '/myitems';" type="button">Delete</button></td>
+                        </tr>
+                        <% }%>
+                    </table>
+                </div>
+                <div class="footnote">
+                    <i class="fa fa-bookmark footnote-bookmark"></i>
+                    <p>Indicates that this recipe belongs to you.
+                        <br>
+                        <a href="">Click here to share a new recipe!</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer class="site-footer">
+    <!-- views/partials/footer.ejs -->
+    <% include ../partials/footer %>
+</footer>
+</body>
+</html>

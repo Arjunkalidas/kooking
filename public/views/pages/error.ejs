@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- views/partials/head.ejs -->
+    <title><%= data.title %></title>
+    <% include ../partials/head %>
+</head>
+
+<body>
+<!--  logo of the brand here-->
+<header class="banner">
+    <!-- views/partials/header.ejs -->
+    <% include ../partials/header %>
+</header>
+<!-- The user specific menu goes here -->
+<!-- views/partials/user-navigation.ejs -->
+<% include ../partials/user-navigation %>
+
+<main class="main-categories">
+    <!-- views/partials/site-navigation.ejs -->
+    <% include ../partials/site-navigation %>
+    <div class="breadcrumb-navigation">
+        <ul class="breadcrumb">
+            <li><a href="/index">Home</a></li>
+            <li><a href="#">Categories</a></li>
+        </ul>
+    </div>
+    <div class="error-notification">
+        <h4>
+        Sorry, we couldn't find what you are looking for! Please choose from below.
+    </h4>
+    </div>
+    <%
+    for(var i=0; i< data.categories.length; i++){ %>
+        <div class="card-row">
+            <h3><%= data.categories[i] %></h3>
+            <%
+            for(var j=0; j< data.items.length;j++){
+            if(data.categories[i] === data.items[j].catalogCategory){ %>
+                <a href="/categories/item/<%= data.items[j].itemCode %>"><div class="card">
+                        <img src="<%= data.items[j].imageURL %>" alt="<%= data.items[j].itemName %>">
+                        <div class="card-container">
+                            <h4><b><%= data.items[j].itemName %></b></h4>
+                        </div>
+                    </div></a>
+            <% }%>
+            <% }%>
+        </div>
+    <% }%>
+</main>
+
+<footer class="site-footer">
+    <!-- views/partials/footer.ejs -->
+    <% include ../partials/footer %>
+</footer>
+</body>
+</html>

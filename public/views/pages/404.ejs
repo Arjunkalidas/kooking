@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- views/partials/head.ejs -->
+    <title><%= data.title %></title>
+    <% include ../partials/head %>
+</head>
+
+<body>
+
+<header class="banner">
+</header>
+
+<main class="main-categories">
+
+    <div class="card-row">
+        <div class="card-container">
+            <div class="card home-card">
+                <img class="hm-pg-img-set-1" src="/assets/images/minion.png" alt="Avatar">
+                <div class="card-container">
+                    <h3>
+                        Awww... Don't Cry.
+                    </h3>
+                    <p>
+                        it's just a 404 Error!
+                    </p>
+                    <br>
+                    <button class="btn" type="button" onclick="location.href = '/index';">Go Home Already!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <!-- views/partials/footer.ejs -->
+    <% include ../partials/footer %>
+</footer>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- views/partials/head.ejs -->
+    <title><%= data.title %></title>
+    <% include ../partials/head %>
+</head>
+
+<body>
+<!--  logo of the brand here-->
+<header class="banner">
+    <!-- views/partials/header.ejs -->
+    <% include ../partials/header %>
+</header>
+
+<!-- The user specific menu goes here -->
+<!-- views/partials/user-navigation.ejs -->
+<% include ../partials/user-navigation %>
+
+<main class="main-categories">
+    <!-- views/partials/site-navigation.ejs -->
+    <% include ../partials/site-navigation %>
+
+    <%
+    for(var i=0; i< data.homePageData.length; i++){ %>
+    <div class="card-row">
+        <div class="card-container">
+            <div class="card home-card">
+                <h4><b><%= data.homePageData[i].itemName %></b></h4>
+                <img class="hm-pg-img-set-1" src="<%= data.homePageData[i].imageURL %>" alt="Avatar">
+                <div class="card-container">
+                <p><%= data.homePageData[i].description %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }%>
+</main>
+
+<footer class="site-footer">
+    <!-- views/partials/footer.ejs -->
+    <% include ../partials/footer %>
+</footer>
+</body>
+
+</html>
