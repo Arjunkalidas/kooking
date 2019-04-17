@@ -1,7 +1,7 @@
 # kooking
 A website for recipes, sharing and buying!
 
-This webiste features an intuitive user experience for browsing recipes, creating account, bookmarking recipes and sharing with others. Future updates would include buying appliances and recipe packages, payment gateway integration and Google analytics for collecting statistics.
+This website features an intuitive user experience for browsing recipes, creating account, bookmarking recipes and sharing with others. Future updates would include buying appliances and recipe packages, payment gateway integration and Google analytics for collecting statistics.
 
 Special Features:
 The general layout is a card based layout. 
