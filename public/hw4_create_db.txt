@@ -1,0 +1,217 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww18480\viewh11240\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 db = connect("127.0.0.1:27017/kooking")\
+db.dropDatabase();\
+db.recipes.insert(\{\
+       itemCode: '1',\
+       itemName: "Blueberry Muffin",\
+       catalogCategory: "American",\
+       mealType: "Pastry",\
+       rating: 5,\
+       description: "This recipe came to The Times in a 1987 article by Marian Burros, \\"The Battle of the Blueberry Muffins.\\" Two years prior, Ms. Burros wrote about a recipe for the muffins attributed to the Ritz-Carlton in Boston. The hotel had adapted a recipe used by Gilchrist's, once one of city's best-known department stores. After it ran, a reader wrote in to say that the best blueberry muffins in Boston were not from the Ritz-Carlton, but from the now-closed Jordan Marsh department store. ",\
+       ingredients: ['\'bd cup softened butter', '1 \'bc cups sugar', '2 eggs', '1 teaspoon vanilla extract', '2 cups flour', '\'bd teaspoon salt', '2 teaspoons baking powder', '\'bd cup milk', '2 cups blueberries, washed, drained and picked over', '3 teaspoons sugar'],\
+       directions: ['Preheat the oven to 375.', 'Cream the butter and 1 1/4 cups sugar until light.', 'Add the eggs, one at a time, beating well after each addition.',\
+           'Add vanilla.', 'Sift together the flour, salt and baking powder, and add to the creamed mixture alternately with the milk.',\
+           'Crush 1/2 cup blueberries with a fork, and mix into the batter.', 'Fold in the remaining whole berries.',\
+           'Line a 12 cup standard muffin tin with cupcake liners, and fill with batter.',\
+           'Sprinkle the 3 teaspoons sugar over the tops of the muffins, and bake at 375 degrees for about 30-35 minutes.',\
+           'Remove muffins from tin and cool at least 30 minutes.', 'Store, uncovered, or the muffins will be too moist the second day, if they last that long.'],\
+       imageURL: "/assets/images/Blueberry-Muffins.jpg"\
+\});\
+\
+db.recipes.insert(\{\
+    itemCode: '2',\
+    itemName: "Fish & Chips",\
+    catalogCategory: "American",\
+    mealType: "Breakfast",\
+    rating: 3,\
+    description: "No one knows precisely where or when fish and chips came together. Chips had arrived in Britain from France in the eighteenth century and were known as pommes frites. The first mention of chips was in 1854 when a leading chef included \\"thin cut potatoes cooked in oil\\" in his recipe book, Shilling Cookery. Around this time, fish warehouses sold fried fish and bread, with mention of this in Charles Dickens\'92 novel Oliver Twist published in 1830.",\
+    ingredients: ['\'bd cup softened butter', '1 \'bc cups sugar', '2 eggs', '1 teaspoon vanilla extract', '2 cups flour', '\'bd teaspoon salt', '2 teaspoons baking powder', '\'bd cup milk', '2 cups blueberries, washed, drained and picked over', '3 teaspoons sugar'],\
+    directions: ['Preheat the oven to 375.', 'Cream the butter and 1 1/4 cups sugar until light.', 'Add the eggs, one at a time, beating well after each addition.',\
+       'Add vanilla.', 'Sift together the flour, salt and baking powder, and add to the creamed mixture alternately with the milk.',\
+       'Crush 1/2 cup blueberries with a fork, and mix into the batter.', 'Fold in the remaining whole berries.',\
+       'Line a 12 cup standard muffin tin with cupcake liners, and fill with batter.',\
+       'Sprinkle the 3 teaspoons sugar over the tops of the muffins, and bake at 375 degrees for about 30-35 minutes.',\
+       'Remove muffins from tin and cool at least 30 minutes.', 'Store, uncovered, or the muffins will be too moist the second day, if they last that long.'],\
+    imageURL: "/assets/images/food_fishchips.jpg"\
+\});\
+\
+\
+db.recipes.insert(\{\
+      itemCode: '3',\
+      itemName: "Low Carb Tortilla Wraps",\
+      catalogCategory: "American",\
+      mealType: "Lunch",\
+      rating: 3,\
+      description: "Teenager Wade Watts lives with his aunt in Oklahoma City[8] in the \\"stacks\\", a poverty-stricken district constructed of trailer homes piled on top of each other. He spends his spare time as a \\"gunter\\" (\\"egg hunter\\"), logging on to the OASIS as an avatar under the moniker Parzival, reading Halliday's journal Anorak's Almanac, and researching details of the 1980s pop culture, mainly classic video games and movies, that Halliday loved. One day, he realizes that the first key is located on the same virtual world as his own online high school, in a re-creation of the Dungeons & Dragons module Tomb of Horrors. He meets Art3mis, a famous female gunter and blogger who has been exploring the place, and advances further than she does when he defeats the AI Acererak at the video game Joust. He is awarded the Copper Key, and Parzival appears on the \\"Scoreboard\\", attracting the world's attention.",\
+      ingredients: ['\'bd cup softened butter', '1 \'bc cups sugar', '2 eggs', '1 teaspoon vanilla extract', '2 cups flour', '\'bd teaspoon salt', '2 teaspoons baking powder', '\'bd cup milk', '2 cups blueberries, washed, drained and picked over', '3 teaspoons sugar'],\
+      directions: ['Preheat the oven to 375.', 'Cream the butter and 1 1/4 cups sugar until light.', 'Add the eggs, one at a time, beating well after each addition.',\
+          'Add vanilla.', 'Sift together the flour, salt and baking powder, and add to the creamed mixture alternately with the milk.',\
+          'Crush 1/2 cup blueberries with a fork, and mix into the batter.', 'Fold in the remaining whole berries.',\
+          'Line a 12 cup standard muffin tin with cupcake liners, and fill with batter.',\
+          'Sprinkle the 3 teaspoons sugar over the tops of the muffins, and bake at 375 degrees for about 30-35 minutes.',\
+          'Remove muffins from tin and cool at least 30 minutes.', 'Store, uncovered, or the muffins will be too moist the second day, if they last that long.'],\
+      imageURL: "/assets/images/Tortillas.jpg"\
+\});\
+\
+db.recipes.insert(\{\
+  itemCode: '4',\
+    itemName: "Tofu Ramen",\
+    catalogCategory: "American",\
+    mealType: "Dinner",\
+    rating: 3,\
+    description: "Ramen is a noodle soup dish that was originally imported from China and has become one of the most popular dishes in Japan in recent decades. Ramen are inexpensive and widely available, two factors that also make them an ideal option for budget travelers. Ramen restaurants, or ramen-ya, can be found in virtually every corner of the country and produce countless regional variations of this common noodle dish.",\
+    ingredients: ['\'bd cup softened butter', '1 \'bc cups sugar', '2 eggs', '1 teaspoon vanilla extract', '2 cups flour', '\'bd teaspoon salt', '2 teaspoons baking powder', '\'bd cup milk', '2 cups blueberries, washed, drained and picked over', '3 teaspoons sugar'],\
+    directions: ['Preheat the oven to 375.', 'Cream the butter and 1 1/4 cups sugar until light.', 'Add the eggs, one at a time, beating well after each addition.',\
+        'Add vanilla.', 'Sift together the flour, salt and baking powder, and add to the creamed mixture alternately with the milk.',\
+        'Crush 1/2 cup blueberries with a fork, and mix into the batter.', 'Fold in the remaining whole berries.',\
+        'Line a 12 cup standard muffin tin with cupcake liners, and fill with batter.',\
+        'Sprinkle the 3 teaspoons sugar over the tops of the muffins, and bake at 375 degrees for about 30-35 minutes.',\
+        'Remove muffins from tin and cool at least 30 minutes.', 'Store, uncovered, or the muffins will be too moist the second day, if they last that long.'],\
+    imageURL: "/assets/images/tofu_ramen_wagamama.jpg"\
+\});\
+\
+\
+db.recipes.insert(\{\
+        itemCode: '5',\
+        itemName: "Tiramisu",\
+        catalogCategory: "Italian",\
+        mealType: "Pastry",\
+        rating: 5,\
+        description: "Tiramisu quite literally means, \'93a pick me up.\'94 One of Italy\'92s most popular, Tiramisu is a rich treat blending the bold flavors of cocoa and espresso with savory mascarpone cheese and wine, layered with ladyfinger biscuits.",\
+        ingredients: ['\'bd cup softened butter', '1 \'bc cups sugar', '2 eggs', '1 teaspoon vanilla extract', '2 cups flour', '\'bd teaspoon salt', '2 teaspoons baking powder', '\'bd cup milk', '2 cups blueberries, washed, drained and picked over', '3 teaspoons sugar'],\
+        directions: ['Preheat the oven to 375.', 'Cream the butter and 1 1/4 cups sugar until light.', 'Add the eggs, one at a time, beating well after each addition.',\
+            'Add vanilla.', 'Sift together the flour, salt and baking powder, and add to the creamed mixture alternately with the milk.',\
+            'Crush 1/2 cup blueberries with a fork, and mix into the batter.', 'Fold in the remaining whole berries.',\
+            'Line a 12 cup standard muffin tin with cupcake liners, and fill with batter.',\
+            'Sprinkle the 3 teaspoons sugar over the tops of the muffins, and bake at 375 degrees for about 30-35 minutes.',\
+            'Remove muffins from tin and cool at least 30 minutes.', 'Store, uncovered, or the muffins will be too moist the second day, if they last that long.'],\
+        imageURL: "/assets/images/choco-chip-tiramisu.jpeg"\
+\});\
+\
+db.recipes.insert(\{\
+  itemCode: '6',\
+  itemName: "Flathead Fish",\
+  catalogCategory: "Italian",\
+  mealType: "Lunch/Dinner",\
+  rating: 5,\
+  description: "Flathead is a delicious, and often overlooked fish. The sweet, soft beetroot, crunchy walnuts, spicy watercress and horseradish provide a great contrast of textures and flavours in this quick and easy dish.",\
+  ingredients: ['\'bd cup softened butter', '1 \'bc cups sugar', '2 eggs', '1 teaspoon vanilla extract', '2 cups flour', '\'bd teaspoon salt', '2 teaspoons baking powder', '\'bd cup milk', '2 cups blueberries, washed, drained and picked over', '3 teaspoons sugar'],\
+  directions: ['Preheat the oven to 375.', 'Cream the butter and 1 1/4 cups sugar until light.', 'Add the eggs, one at a time, beating well after each addition.',\
+      'Add vanilla.', 'Sift together the flour, salt and baking powder, and add to the creamed mixture alternately with the milk.',\
+      'Crush 1/2 cup blueberries with a fork, and mix into the batter.', 'Fold in the remaining whole berries.',\
+      'Line a 12 cup standard muffin tin with cupcake liners, and fill with batter.',\
+      'Sprinkle the 3 teaspoons sugar over the tops of the muffins, and bake at 375 degrees for about 30-35 minutes.',\
+      'Remove muffins from tin and cool at least 30 minutes.', 'Store, uncovered, or the muffins will be too moist the second day, if they last that long.'],\
+  imageURL: "/assets/images/food_flathead.jpg"\
+\});\
+\
+db.recipes.insert(\{\
+  itemCode: '7',\
+  itemName: "Bean Burger",\
+  catalogCategory: "Italian",\
+  mealType: "Lunch/Dinner",\
+  rating: 3,\
+  description: "Burgers \'96 once considered being a quintessential meal for Americans has today become a party of daily food habit for people globally. That\'92s because they are ready to eat, easy to get and can be eaten while working! Very few of us are familiar with facts about this interesting food. So, today we are going to learn 20 interesting Facts about Burgers. Find out how many of these facts were known to you.",\
+  ingredients: ['\'bd cup softened butter', '1 \'bc cups sugar', '2 eggs', '1 teaspoon vanilla extract', '2 cups flour', '\'bd teaspoon salt', '2 teaspoons baking powder', '\'bd cup milk', '2 cups blueberries, washed, drained and picked over', '3 teaspoons sugar'],\
+  directions: ['Preheat the oven to 375.', 'Cream the butter and 1 1/4 cups sugar until light.', 'Add the eggs, one at a time, beating well after each addition.',\
+      'Add vanilla.', 'Sift together the flour, salt and baking powder, and add to the creamed mixture alternately with the milk.',\
+      'Crush 1/2 cup blueberries with a fork, and mix into the batter.', 'Fold in the remaining whole berries.',\
+      'Line a 12 cup standard muffin tin with cupcake liners, and fill with batter.',\
+      'Sprinkle the 3 teaspoons sugar over the tops of the muffins, and bake at 375 degrees for about 30-35 minutes.',\
+      'Remove muffins from tin and cool at least 30 minutes.', 'Store, uncovered, or the muffins will be too moist the second day, if they last that long.'],\
+  imageURL: "/assets/images/Burger.jpg"\
+\});\
+\
+db.recipes.insert(\{\
+  itemCode: '8',\
+  itemName: "Picadillo Salad",\
+  catalogCategory: "Italian",\
+  mealType: "Salad",\
+  rating: 4,\
+  description: "Picadillo is a traditional dish found in Spain, the Philippines and other Latin American countries. It is made with ground meat, tomatoes, fragrant spices and other ingredients that vary depending on the region. Picadillo is often served in taco shells, with rice, fried plantain or as a filling in savory pastries.",\
+  ingredients: ['\'bd cup softened butter', '1 \'bc cups sugar', '2 eggs', '1 teaspoon vanilla extract', '2 cups flour', '\'bd teaspoon salt', '2 teaspoons baking powder', '\'bd cup milk', '2 cups blueberries, washed, drained and picked over', '3 teaspoons sugar'],\
+  directions: ['Preheat the oven to 375.', 'Cream the butter and 1 1/4 cups sugar until light.', 'Add the eggs, one at a time, beating well after each addition.',\
+      'Add vanilla.', 'Sift together the flour, salt and baking powder, and add to the creamed mixture alternately with the milk.',\
+      'Crush 1/2 cup blueberries with a fork, and mix into the batter.', 'Fold in the remaining whole berries.',\
+      'Line a 12 cup standard muffin tin with cupcake liners, and fill with batter.',\
+      'Sprinkle the 3 teaspoons sugar over the tops of the muffins, and bake at 375 degrees for about 30-35 minutes.',\
+      'Remove muffins from tin and cool at least 30 minutes.', 'Store, uncovered, or the muffins will be too moist the second day, if they last that long.'],\
+  imageURL: "/assets/images/picadillo-cuban.jpg"\
+\});\
+\
+\
+db.user.insert(\{\
+  userID: 'user01',\
+  firstName: 'Subu',\
+  lastName: 'Avudai',\
+  emailAddress: 'subu.avudai@mail.in',\
+  addressField_1: '9601 Grove Hill Ln',\
+  addressField_2: '1908',\
+  city: 'Charlotte',\
+  state: 'NC',\
+  zipCode: '28290',\
+  country: 'USA',\
+  dateOfBirth: '09-Aug-1991',\
+  phoneNumber: '9802348097',\
+  password: 'niner49'\
+\});\
+\
+db.user.insert(\{\
+  userID: 'user02',\
+  firstName: 'Arjun',\
+  lastName: 'Kalidas',\
+  emailAddress: 'akalidas@uncc.edu',\
+  addressField_1: '9780 Grove Crest Ln',\
+  addressField_2: '1743',\
+  city: 'Charlotte',\
+  state: 'NC',\
+  zipCode: '28345',\
+  country: 'USA',\
+  dateOfBirth: '24-Sep-1990',\
+  phoneNumber: '7834112020',\
+  password: 'niner49'\
+\});\
+\
+\
+db.useritem.insert(\{\
+        userID: 'user01',\
+        itemName: 'Picadillo Salad',\
+        itemCode: '8',\
+        catalogCategory: 'Italian',\
+        rating: 4,\
+        madeIt: true\
+\});\
+\
+db.useritem.insert(\{\
+        userID: 'user01',\
+        itemName: 'Flathead Fish',\
+        itemCode: '6',\
+        catalogCategory: 'Italian',\
+        rating: 4,\
+        madeIt: false\
+\});\
+\
+db.useritem.insert(\{\
+        userID: 'user02',\
+        itemName: 'Bean Burger',\
+        itemCode: '7',\
+        catalogCategory: 'Italian',\
+        rating: 2,\
+        madeIt: true\
+\});\
+\
+db.useritem.insert(\{\
+        userID: 'user02',\
+        itemName: 'Tofu Ramen',\
+        itemCode: '4',\
+        catalogCategory: 'American',\
+        rating: 2,\
+        madeIt: false\
+\});\
+}
