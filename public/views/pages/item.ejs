@@ -23,7 +23,7 @@
         <ul class="breadcrumb">
             <li><a href="/index">Home</a></li>
             <li><a href="/categories">Categories</a></li>
-            <li><a href="#">Item</a></li>
+            <li><a href="#">ItemModel</a></li>
         </ul>
     </div>
     <div class="card-row home-card">
@@ -46,8 +46,19 @@
                         </div>
                 </div>
                 <div id="save-n-rate">
-                    <button class="btn" onclick="location.href = '/myitems';" type="button"><i class="fa fa-heart"></i> Save it</button>
-                    <button class="btn" type="button" onclick="location.href = '/feedback';"><i class="fa fa-star"></i> Rate it!</button>
+                    <form action="/userProfile/addItem" method="POST">
+                        <input type="hidden" name="itemCode" value="<%= data.item.itemCode %>">
+                        <input type="hidden" name="itemName" value="<%= data.item.itemName %>">
+                        <input type="hidden" name="itemCategory" value="<%= data.item.catalogCategory %>">
+                    <button class="btn" type="submit"><i class="fa fa-heart"></i> Save it</button>
+                    </form>
+
+                    <form action="/userProfile/feedback" method="GET">
+                        <input type="hidden" name="itemCode" value="<%= data.item.itemCode %>">
+                        <% if(flag === false) { %>
+                        <button class="btn" type="submit"><i class="fa fa-star"></i> Rate it!</button>
+                        <%}%>
+                    </form>
                 </div>
                 <div id="main-content">
                     <div class="intro">

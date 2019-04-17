@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- views/partials/head.ejs -->
-    <title><%= data.title %></title>
+    <title>My feedback</title>
     <% include ../partials/head %>
 </head>
 
@@ -25,27 +25,26 @@
             <div class="card home-card">
                 <h4><strong>Give your feedback</strong></h4>
                 <div class="media-div media-div-feedback">
-                    <img alt="A plate with lot of blueberry muffins" class="item-detail-card-img" src="assets/images/Blueberry-Muffins.jpg">
+                    <img alt="A plate with lot of blueberry muffins" class="item-detail-card-img" src=<%= data._imageURL %>>
                 </div>
+                <form action="/userProfile/feedbackManager" method="POST">
                 <div id="recipe-title-feedback">
-                    <h2><b>Blueberry Muffin</b></h2>
-                    <h3 class="feedback-cat">Pastry</h3>
-                    <p class="feedback-desc">You will melt into this buttery sweet blueberry muffin.
-                        It will go with your evening dose of tea or a cafe mocha.
-                    </p>
-                    <input list="rating" placeholder="Select any" class="form-input" required>
-                    <datalist id="rating">
-                        <option value="1 star ★"></option>
-                        <option value="2 star ★★"></option>
-                        <option value="3 star ★★★"></option>
-                        <option value="4 star ★★★★"></option>
-                        <option value="5 star ★★★★★"></option>
-                    </datalist><br>
-                    <textarea name="title" cols="50" placeholder="Title"></textarea><br>
-                    <textarea name="description" rows="10" cols="50" placeholder="Description"></textarea><br>
-                    <input type="submit" value="Confirm Rating" class="btn btn-space"><br>
-                    <input type="checkbox" name="selection" value="I made it" class="btn-space"> I made it<br>
+                    <h2><b><%= data._itemName %></b></h2>
+                    <h3 class="feedback-cat"><%= data._itemCategory %></h3>
+                    <p class="feedback-desc"></p>
+                    <select id="rating" placeholder="Select any" class="form-input" name="ratingSelection" required>
+                        <option value="" selected disabled hidden>Choose here</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select><br>
+                    <input type="hidden" name="itemCode" value="<%= data._itemCode %>">
+                    <input type="submit" name="confirmRating" class="btn btn-space" value="Confirm rating"><br>
+                    <input type="checkbox" name="madeIt" class="btn-space"> I made it <br>
                 </div>
+                </form>
             </div>
         </div>
     </div>

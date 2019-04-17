@@ -233,6 +233,18 @@ aside ul li:hover {
   color: white;
 }
 
+.nav_btn {
+  padding-left: 0;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.nav_btn:hover {
+  color: white;
+}
+
 .sidebar_nav .ui-tabs-active {
   color: white;
   background: #F21923;
@@ -421,6 +433,7 @@ aside ul li:hover {
 
 #save-n-rate .btn {
   background-color: #F21923; /* Green */
+  float:left;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -603,6 +616,7 @@ tr:nth-child(even) {
  }
 
 .social-media-section ul li a{
+  color: white;
   width:20%;
   height:20%;
 }
@@ -706,4 +720,13 @@ h5 {
 
 #feedback-height {
   padding: 10px 0 0 0;
+}
+
+#sign_in {
+  font-size: 18px;
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+  cursor: pointer;
+  font-family: Helvetica;
 }

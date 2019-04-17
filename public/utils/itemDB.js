@@ -2,7 +2,7 @@
  * @author arjunk
  */
 
-var Item = require('../models/Item');
+var Item = require('../models/item.model');
 
 module.exports.getItems = function () {
 

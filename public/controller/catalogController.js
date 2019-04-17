@@ -1,12 +1,12 @@
 /*
  * @author arjunk
  */
-var express = require('express');
-var router = express.Router();
-var itemDb = require('../utils/ItemDB');
-var path = require('path');
+const express = require('express');
+const router = express.Router();
+const itemDb = require('../utils/ItemDB');
+const path = require('path');
 
-var viewpath = path.join(__dirname, '..', '/views/pages/');
+const viewpath = path.join(__dirname, '../views/pages/');
 
 /* GET index page. */
 router.get('/', function(req, res) {
@@ -117,7 +117,22 @@ router.get('/categories/item/:itemCode', function (req, res) {
         path: req.url,
         item: item
     };
-    res.render(viewpath + 'item', {data: data});
+    var flag=false;
+    if(req.session.theUser) {
+
+        req.session.userItem.forEach(function (i) {
+            if (i._itemCode === itemCode) {
+                flag = false;
+            } else {
+                flag = true;
+            }
+
+        });
+        res.render(viewpath + 'item', {data: data, flag: flag});
+    }
+    else{
+        res.render(viewpath + 'item', {data: data, flag: true});
+    }
 });
 
 router.get('/myitems', function(req, res) {
@@ -158,16 +173,11 @@ router.get('/myitems/item/:itemCode', function(req, res) {
         path: req.url,
         item: item
     };
-    res.render(viewpath + 'item', {data: data});
-});
-
-router.get('/feedback', function(req, res) {
-
-    var data= {
-        title:'Feedback',
-        path: req.url
-    };
-    res.render(viewpath + 'feedback', {data: data});
+    if(req.session.theUser) {
+        res.render(viewpath + 'item', {data: data, flag: false});
+    } else {
+        res.render(viewpath + 'item', {data: data, flag: true});
+    }
 });
 
 router.get('/*', function(req, res) {

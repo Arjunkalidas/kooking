@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- views/partials/head.ejs -->
-    <title><%= data.title %></title>
+    <title>My items</title>
     <% include ../partials/head %>
 </head>
 
@@ -20,7 +20,6 @@
 <main class="main-categories">
     <!-- views/partials/site-navigation.ejs -->
     <% include ../partials/site-navigation %>
-
     <div class="card-row home-card">
         <div class="card-container">
             <div class="card home-card">
@@ -29,6 +28,7 @@
                 </div>
                 <br>
                 <br>
+                <% if(items !== undefined && items.length != 0) { %>
                 <div id="bookmark-table">
                     <table class="recipe-collection">
                         <tr>
@@ -41,28 +41,36 @@
                             <th></th>
                         </tr>
                         <%
-                        for(var i=0; i< data.items.length; i++){ %>
+                        for(var i=0; i< items.length; i++){ %>
                         <tr>
-                            <td><a href="/myitems/item/<%= data.items[i].itemCode %>"><i class="fa fa-bookmark padright"></i><%= data.items[i].itemName %></a></td>
-                            <td><%= data.items[i].catalogCategory %></td>
+                            <td><a href="/myitems/item/<%= items[i]._itemCode %>"><i class="fa fa-bookmark padright"></i><%= items[i]._itemName %></a></td>
+                            <td><%= items[i]._itemCategory %></td>
                             <td><ul>
                                     <%
-                                    for(var j=0; j < data.items[i].rating; j++){ %>
+                                    for(var j=0; j < items[i]._rating; j++){ %>
                                         <li><i class="fa fa-star"></i></li>
                                     <% }%>
                                 </ul></td>
-                            <td><input type="checkbox" name="madeit_or_not" value="madeit"><br></td>
-                            <td><button class="btn update-btn" onclick="location.href = '/feedback';" type="button">Update</button></td>
-                            <td><button class="btn delete-btn" onclick="location.href = '/myitems';" type="button">Delete</button></td>
+                            <% if(items[i]._madeIt == 'Yes') {%>
+                            <td><input type="checkbox" name="madeit_or_not" value="madeit" checked disabled><br></td>
+                            <% } else {%>
+                                <td><input type="checkbox" name="madeit_or_not" value="madeit" disabled><br></td>
+                            <%}%>
+                            <td><form method="GET"><button name="itemCode" value="<%= items[i]._itemCode %>" class="btn update-btn" type="submit" formaction="/userProfile/feedback">Update</button></form></td>
+                            <td><form method="GET"><button name="itemCode" value="<%= items[i]._itemCode %>" class="btn delete-btn" type="submit" formaction="/userProfile/myProfile">Delete</button></form></td>
+
                         </tr>
                         <% }%>
                     </table>
                 </div>
+                <%} else { %>
+                    <p>Please feel free to add items to your library, head to the "Categories" section!</p>
+                <% } %>
                 <div class="footnote">
                     <i class="fa fa-bookmark footnote-bookmark"></i>
                     <p>Indicates that this recipe belongs to you.
                         <br>
-                        <a href="">Click here to share a new recipe!</a>
+                        <a href="/userProfile/myProfile">Click here to share a new recipe!</a>
                     </p>
                 </div>
             </div>
