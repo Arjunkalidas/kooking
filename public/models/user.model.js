@@ -20,7 +20,7 @@ class UserModel {
      * @param phoneNumber
      */
     constructor(userID, firstName, lastName, emailAddress, addressField_1, addressField_2, city, state, zipCode,
-                country, dateOfBirth, phoneNumber) {
+                country, dateOfBirth, phoneNumber, password) {
         this._userID = userID;
         this._firstName = firstName;
         this._lastName = lastName;
@@ -33,7 +33,7 @@ class UserModel {
         this._country = country;
         this._dateOfBirth = dateOfBirth;
         this._phoneNumber = phoneNumber;
-
+        this._password = password;
     }
 
 
@@ -131,6 +131,14 @@ class UserModel {
 
     set phoneNumber(value) {
         this._phoneNumber = value;
+    }
+
+    get password() {
+        return this._password;
+    }
+
+    set password(value) {
+        this._password = value;
     }
 }
 

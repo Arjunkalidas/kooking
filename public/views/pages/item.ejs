@@ -23,7 +23,7 @@
         <ul class="breadcrumb">
             <li><a href="/index">Home</a></li>
             <li><a href="/categories">Categories</a></li>
-            <li><a href="#">ItemModel</a></li>
+            <li><a href="#">Item</a></li>
         </ul>
     </div>
     <div class="card-row home-card">
@@ -33,13 +33,13 @@
                     <p>404</p>
                 <% } else { %>
                 <div class="media-div">
-                        <img alt="A plate with lot of blueberry muffins" class="item-detail-card-img" src="<%= data.item.imageURL %>">
+                        <img alt="<%= data.item[0].itemName %>" class="item-detail-card-img" src="<%= data.item[0].imageURL %>">
                         <div id="recipe-title">
-                            <h2><b><%= data.item.itemName %></b></h2>
-                            <h3 id="category"><em>Meal Type</em> : <%= data.item.mealType %></h3><br>
+                            <h2><b><%= data.item[0].itemName %></b></h2>
+                            <h3 id="category"><em>Meal Type</em> : <%= data.item[0].mealType %></h3><br>
                             <ul id="rating-star">
                                 <%
-                                for(var i=0; i < data.item.rating; i++){ %>
+                                for(var i=0; i < data.item[0].rating; i++){ %>
                                     <li><i class="fa fa-star"></i></li>
                                 <% }%>
                             </ul>
@@ -47,15 +47,16 @@
                 </div>
                 <div id="save-n-rate">
                     <form action="/userProfile/addItem" method="POST">
-                        <input type="hidden" name="itemCode" value="<%= data.item.itemCode %>">
-                        <input type="hidden" name="itemName" value="<%= data.item.itemName %>">
-                        <input type="hidden" name="itemCategory" value="<%= data.item.catalogCategory %>">
-                    <button class="btn" type="submit"><i class="fa fa-heart"></i> Save it</button>
+                        <input type="hidden" name="itemCode" value="<%= data.item[0].itemCode %>">
+                        <input type="hidden" name="itemName" value="<%= data.item[0].itemName %>">
+                        <input type="hidden" name="itemCategory" value="<%= data.item[0].catalogCategory %>">
+                        <input type="hidden" name="rating" value="<%= data.item[0].rating %>">
+                        <input type="hidden" name="madeIt" value="<%= false %>">
+                    <button class="btn" id="myBtn" type="submit"><i class="fa fa-heart"></i> Save it</button>
                     </form>
-
                     <form action="/userProfile/feedback" method="GET">
-                        <input type="hidden" name="itemCode" value="<%= data.item.itemCode %>">
-                        <% if(flag === false) { %>
+                        <input type="hidden" name="itemCode" value="<%= data.item[0].itemCode %>">
+                        <% if(flag === true && isLogin === true) { %>
                         <button class="btn" type="submit"><i class="fa fa-star"></i> Rate it!</button>
                         <%}%>
                     </form>
@@ -65,7 +66,7 @@
                         <h3>About</h3>
                         <br>
                         <p>
-                            <%= data.item.description %>
+                            <%= data.item[0].description %>
                         </p>
                     </div>
                     <br>
@@ -75,8 +76,8 @@
                         <br>
                         <ul>
                             <%
-                            for(var i=0; i < data.item.ingredients.length; i++) { %>
-                                <li><%= data.item.ingredients[i] %></li>
+                            for(var i=0; i < data.item[0].ingredients.length; i++) { %>
+                                <li><%= data.item[0].ingredients[i] %></li>
                             <% } %>
                         </ul>
                     </div>
@@ -87,15 +88,15 @@
                         <br>
                         <ul>
                             <%
-                            for(var i=0; i < data.item.directions.length; i++) { %>
-                                <li><%= data.item.directions[i] %></li>
+                            for(var i=0; i < data.item[0].directions.length; i++) { %>
+                                <li><%= data.item[0].directions[i] %></li>
                             <% } %>
                         </ul>
                         <br>
                     </div>
                 </div>
                 <button class="btn" type="button" onclick="location.href = '/categories';">Continue browsing</button>
-                    <% } %>
+                <%}%>
             </div>
         </div>
     </div>

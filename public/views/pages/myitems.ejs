@@ -43,22 +43,21 @@
                         <%
                         for(var i=0; i< items.length; i++){ %>
                         <tr>
-                            <td><a href="/myitems/item/<%= items[i]._itemCode %>"><i class="fa fa-bookmark padright"></i><%= items[i]._itemName %></a></td>
-                            <td><%= items[i]._itemCategory %></td>
+                            <td><a href="/myitems/item/<%= items[i].itemCode %>"><i class="fa fa-bookmark padright"></i><%= items[i].itemName %></a></td>
+                            <td><%= items[i].catalogCategory %></td>
                             <td><ul>
                                     <%
-                                    for(var j=0; j < items[i]._rating; j++){ %>
-                                        <li><i class="fa fa-star"></i></li>
-                                    <% }%>
+                                        for(var j=0; j < items[i].rating; j++){ %>
+                                            <li><i class="fa fa-star"></i></li>
+                                        <% }%>
                                 </ul></td>
-                            <% if(items[i]._madeIt == 'Yes') {%>
+                            <% if(items[i].madeIt == true) {%>
                             <td><input type="checkbox" name="madeit_or_not" value="madeit" checked disabled><br></td>
                             <% } else {%>
                                 <td><input type="checkbox" name="madeit_or_not" value="madeit" disabled><br></td>
                             <%}%>
-                            <td><form method="GET"><button name="itemCode" value="<%= items[i]._itemCode %>" class="btn update-btn" type="submit" formaction="/userProfile/feedback">Update</button></form></td>
-                            <td><form method="GET"><button name="itemCode" value="<%= items[i]._itemCode %>" class="btn delete-btn" type="submit" formaction="/userProfile/myProfile">Delete</button></form></td>
-
+                            <td><form method="GET"><button name="itemCode" value="<%= items[i].itemCode %>" class="btn update-btn" type="submit" formaction="/userProfile/feedback">Update</button></form></td>
+                            <td><form method="GET"><button name="itemCode" value="<%= items[i].itemCode %>" class="btn delete-btn" type="submit" formaction="/userProfile/myProfile">Delete</button></form></td>
                         </tr>
                         <% }%>
                     </table>

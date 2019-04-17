@@ -15,7 +15,7 @@ app.use(session({name:'theUser', secret:'1234',
                 proxy: true,
                  resave: true,
                 saveUninitialized: true, cookie:{
-                maxAge:50000
+                maxAge:99999
         }}));
 
 app.use(function(req, res, next){

@@ -21,6 +21,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "http-errors": "^1.7.2",
+    "mongoose": "^5.4.21",
     "nodemon": "^1.18.10"
   },
   "devDependencies": {

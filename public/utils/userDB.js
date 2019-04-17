@@ -1,32 +1,13 @@
 /*
  * @author arjunk
  */
-
-var User = require('../models/user.model');
-var UserItem = require('../models/userItem.model');
+const connMan = require('../utils/ConnectionManager');
+const user = connMan.UserModel;
 var UserProfile = require('../models/userProfile.model');
 var itemDb = require('../utils/ItemDB');
 
-module.exports.getUsers = function () {
-
-    let users = [];
-    for (let i = 0; i < userdata.length; i++) {
-        let user = new User(userdata[i].userID,
-            userdata[i].firstName,
-            userdata[i].lastName,
-            userdata[i].emailAddress,
-            userdata[i].addressField_1,
-            userdata[i].addressField_2,
-            userdata[i].city,
-            userdata[i].state,
-            userdata[i].zipCode,
-            userdata[i].country,
-            userdata[i].dateOfBirth,
-            userdata[i].phoneNumber);
-
-        users.push(user);
-    }
-    return users;
+var getUsers = function () {
+    return user.find({}).exec();
 };
 
 /**
@@ -34,51 +15,9 @@ module.exports.getUsers = function () {
  * @param userID
  * @returns {*}
  */
-module.exports.getUser = function (userID) {
-    for (var i = 0; i < userdata.length; i++) {
-        if (userdata[i].userID == userID) {
-
-            var user = new User(userdata[i].userID,
-                userdata[i].firstName,
-                userdata[i].lastName,
-                userdata[i].emailAddress,
-                userdata[i].addressField_1,
-                userdata[i].addressField_2,
-                userdata[i].city,
-                userdata[i].state,
-                userdata[i].zipCode,
-                userdata[i].country,
-                userdata[i].dateOfBirth,
-                userdata[i].phoneNumber);
-            return user;
-        }
-    }
-    return null;
+var getUser = function (userID) {
+    return user.find({userID: userID}).exec();
 };
-
-/**
- *
- * @param userID
- * @returns {*}
- */
-module.exports.getUserItems = function (userID) {
-    let userItems = [];
-    for (var i = 0; i < userItem.length; i++) {
-        if (userItem[i].userID == userID) {
-
-            let useritem = new UserItem(userItem[i].userID,
-                                        userItem[i].item,
-                                        userItem[i].itemCode,
-                                        userItem[i].itemCategory,
-                                        userItem[i].rating,
-                                        userItem[i].madeIt);
-
-            userItems.push(useritem);
-        }
-    }
-    return userItems;
-};
-
 
 /**
  *
@@ -98,8 +37,6 @@ module.exports.getUserProfile = function (userID, userItem) {
     }
     return null;
 };
-
-
 
 // Hard coded data
 const userdata = [
@@ -138,9 +75,14 @@ const userItem= [
     }
 ];
 
-const userProfile = [
-        {
-         userID: '1kng001',
-         userItem: this.getUserItems('1kng001')
-        }
-];
+// const userProfile = [
+//         {
+//          userID: '1kng001',
+//          userItem: this.getUserItems('1kng001')
+//         }
+// ];
+
+module.exports = {
+    getUsers: getUsers,
+    getUser: getUser
+};

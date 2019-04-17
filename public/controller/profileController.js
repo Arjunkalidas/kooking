@@ -6,6 +6,8 @@ const router = express.Router();
 const itemDb = require('../utils/ItemDB');
 const userDB = require('../utils/UserDB');
 const userItemModel = require('../models/userItem.model');
+const UserModel = require('../models/user.model');
+
 const path = require('path');
 const bodyParser = require('body-parser');
 const viewpath = path.join(__dirname, '../views/pages/');
@@ -14,25 +16,88 @@ const urlencodedParser = bodyParser.urlencoded({
     extended: false
 });
 
-/* Sign In button functionality */
-router.get('/myItems', urlencodedParser, function(req, res){
-    if(req.session.theUser){
+/* Login functionality */
+router.post('/myProfile', urlencodedParser, function(req, res){
 
-        console.log("session created");
-        res.render(viewpath + 'myitems', {data: req.session.theUser,items:req.session.userItem});
+    var data= {
+        title:'Login',
+        path: req.url,
+    };
+    var flag = true;
+
+    if(!req.session.theUser) {
+        var username = req.body.username;
+        var password = req.body.password;
+        console.log("=========USERNAME=========="+username);
+        console.log("=========PASSWORD=========="+password);
+        var userData = userDB.getUsers();
+        userData.then(function (users) {
+            console.log(users.length);
+            for(let i=0; i < users.length; i++) {
+                if(users[i].userID === username && users[i].password === password && username !== '' && password !== '') {
+                    flag = false;
+                    let user = new UserModel(users[i].userID, users[i].firstName, users[i].lastName, users[i].emailAddress, users[i].addressField_1,
+                        users[i].addressField_2, users[i].city, users[i].state, users[i].zipCode, users[i].country,
+                        users[i].dateOfBirth, users[i].phoneNumber, users[i].password);
+
+                    req.session.theUser = user;
+                    break;
+                }
+            }
+            if (flag === true) {
+                res.render(viewpath + 'login', {flag: flag, data:data});
+            }
+            else {
+                let queryUserItems = userItemModel.getUserItems(username);
+                queryUserItems.then(function (result) {
+                    console.log("result    +++++++++++++++++++++    " + result);
+                    req.session.userItem = result;
+                    res.render(viewpath + 'myitems', {
+                        user_obj: req.session.theUser,
+                        items: req.session.userItem,
+                        data: data,
+                        isLogin: true
+                    });
+                })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+            }
+        })
+            .catch(function (err) {
+                console.log(err);
+            });
 
     } else {
+        console.log("Session exists");
+        res.render(viewpath + 'myitems', {data: req.session.theUser, items: req.session.userItem});
+    }
+});
 
-        req.session.theUser = userDB.getUser('1kng001');
-        req.session.userItem = userDB.getUserItems('1kng001');
 
-        res.redirect('/userProfile/myItems');
+/* "My Recipes" button functionality */
+router.get('/myItems', function(req, res) {
+
+    var data= {
+        title:'Login',
+        path: req.url,
+    };
+
+    if(req.session.theUser){
+
+        console.log("Session exists");
+        res.render(viewpath + 'myitems', {data: req.session.theUser, items:req.session.userItem});
+
+    } else {
+        console.log("not in session!");
+        res.render(viewpath + 'login', {isLogin: false, data: data, flag:false});
     }
 });
 
 /* Sign out button functionality */
 router.get('/signout', function(req, res){
-
+    isLogin = true;
+    console.log('Sign out >> ');
     var homePageData = itemDb.getHomePageItems();
     var data= {
         title:'Home',
@@ -53,166 +118,149 @@ router.get('/signout', function(req, res){
 router.post('/addItem', urlencodedParser, function(req, res){
 
     if(req.session.theUser) {
-        var itemCode = req.body.itemCode;
+        isLogin = true;
         var itemName = req.body.itemName;
         var itemCategory = req.body.itemCategory;
+        var userId = req.session.theUser._userID;
+        var itemCode = parseInt(req.body.itemCode);
+        var rating = req.body.rating;
+        var madeIt = req.body.madeIt;
 
-        let flag = false;
-        let userItems = req.session.userItem;
+        let query = userItemModel.getUserItemByItemCode(userId, itemCode);
+        query.then(function (result) {
+            if(result.length === 1) {
+                res.render(viewpath + 'myitems', {data: req.session.theUser, items:req.session.userItem});
+            } else {
+                let itemToSave = userItemModel.addUserItem(userId, itemCode, itemName, itemCategory, rating, madeIt);
+                itemToSave.then(function (result) {
+                    console.log("------------------"+result);
+                    let itemsToDisplay = userItemModel.getUserItems(userId);
 
+                    itemsToDisplay.then(function (items) {
 
-        for (let i = 0; i < userItems.length; i++) {
-
-            if (userItems[i]._itemCode == itemCode) {
-
-                console.log("Object found...not saving!");
-                flag = true;
-                break;
+                        req.session.userItem = items;
+                        res.render(viewpath + 'myitems', {data: req.session.theUser, items:req.session.userItem});
+                    })
+                })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
             }
-        }
-
-        if(!flag) {
-            var userItemObj = new userItemModel(req.session.theUser._userID, itemName, parseInt(req.body.itemCode), itemCategory, 0, 'No');
-            userItems.push(userItemObj);
-        }
-
-        req.session.userItem = userItems;
-
-        res.render(viewpath + 'myitems', {data: req.session.theUser, items:req.session.userItem});
+        })
+            .catch(function (err) {
+                console.log(err);
+            })
     } else {
-        res.redirect('/userProfile/myItems');
         console.log("not in session!");
-    }
-
-});
-
-/* Rate it button function */
-router.post('/myProfile/feedback', urlencodedParser, function(req, res){
-    var userData = {};
-
-    if(!req.session.theUser){
-
-        var itemData = itemDb.getItems();
         var data = {
-            title:'My Items',
-            path: req.url,
-            items: itemData
+            title: 'Item'
         };
-        res.render(viewpath + 'myitems', {data:data});
-    } else {
-        let sessionData = req.session;
-        sessionData.theUser = userData;
+        res.render(viewpath + 'login', {isLogin: false, data:data, flag:false});
     }
 });
 
+/* Navigate to Feedback, when "Rate it" or "Update" is clicked */
+router.get('/feedback', function(req, res) {
 
-/* Navigate to Feedback */
-router.get('/feedback', function(req, res){
-
-    let isAllowedToRate = false;
     if(req.session.theUser) {
-        let userItems = itemDb.getItems();
+        var itemCode = req.query.itemCode;
+        var userId = req.session.theUser._userID;
 
-        let flag = false;
-        let item = {};
-
-        for (let i = 0; i < userItems.length; i++) {
-
-            if (userItems[i]._itemCode == req.query.itemCode) {
-                item = userItems[i];
-                isAllowedToRate = true;
-                flag = true;
-                break;
+        let userItems = itemDb.getItem(itemCode);
+        userItems.then(function (result) {
+            if (result.length >= 1) {
+                console.log("++++++++++++++++++ Feedback Page -> " + result + '  ------'+itemCode);
+                let item = userItemModel.getUserItems(userId);
+                item.then(function (item) {
+                    console.log("++++++++++++++++++ Feedback Page ITEM -> " + item);
+                    res.render(viewpath + 'feedback', {data: result, item:item});
+                })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
             }
-        }
-        console.log(isAllowedToRate);
-
-        if (flag) {
-            res.render(viewpath + 'feedback', {data: item, items: req.session.userItem, canRate: isAllowedToRate});
-        }
+        })
+            .catch(function (err) {
+            console.log(err);
+        });
+    } else {
+        console.log("No session found, but loading the page with minimal actions");
+        var data = {
+            title: 'My items',
+            path: req.url
+        };
+        res.render(viewpath + 'feedback', {data: data});
     }
 });
 
 /* Update function */
 router.post('/feedbackManager', urlencodedParser, function(req, res){
 
-     let flag = false;
     if(req.session.theUser) {
-        let userItems = req.session.userItem;
+        var itemCode = req.body.itemCode;
+        var new_rating = req.body.ratingSelection;
+        var checkBox = req.body.madeIt;
 
-        let item = {};
+        var user_session = req.session.theUser;
+        var userId = user_session._userID;
 
-        for (let i = 0; i < userItems.length; i++) {
+        madeIt = checkBox === 'on';
 
-            if (userItems[i]._itemCode == req.body.itemCode) {
+        var data= {
+            title:'My Items',
+            path: req.url,
+        };
 
-                item = userItems[i];
-                flag = true;
-                break;
-            }
-        }
-        console.log(item);
+        let query = userItemModel.addItemRating(userId, itemCode, new_rating, madeIt);
+        query.then(function (result) {
 
-        if (flag) {
+            let updatedItemQuery = userItemModel.getUserItems(userId);
+            updatedItemQuery.then(function (updatedList) {
 
-            var new_rating = req.body.ratingSelection;
-            var madeIt = req.body.madeIt;
-
-            if(madeIt === 'on') {
-                madeIt = 'Yes';
-            } else {
-                madeIt = 'No';
-            }
-            if (new_rating != undefined) {
-                item._rating = new_rating;
-                item._madeIt = madeIt;
-                for (let i = 0; i < item.length; i++) {
-                    if (userItems[i]._itemCode == item._itemCode) {
-                        userItems[i].splice(i, 1);
-                        userItems[i].push(item);
-                        break;
-                    }
-
-                }
-            }
-
-            res.render(viewpath + 'myitems', {items: userItems, data: req.session.theUser});
-        }
-
-     }
+                req.session.userItem = updatedList;
+                res.render(viewpath + 'myitems', {items: req.session.userItem, data: data});
+            })
+                .catch(function (err) {
+                    console.log(err);
+                })
+        })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }
 });
 
 /* Delete function */
 router.get('/myProfile', function(req, res) {
 
-    var item = itemDb.getItem(req.session.userItem._itemCode);
-    var itemData = itemDb.getItems();
-
-    var data = {
-        title: 'My Items',
-        path: req.url,
-        items: itemData,
-    };
-
     if(req.session.theUser) {
-        let userItems = req.session.userItem;
+        var itemCode = req.query.itemCode;
+        var userId = req.session.theUser._userID;
 
-        let item = {};
+        var data = {
+            title: 'My Items',
+            path: req.url
+        };
 
-        for (let i = 0; i < userItems.length; i++) {
+        let queryItem = userItemModel.deleteUserItem(userId, itemCode);
+        queryItem.then(function (result) {
+            console.log(result.deletedCount);
 
-            if (userItems[i]._itemCode == req.query.itemCode) {
-
-                item = userItems[i];
-                userItems.splice(i, 1);
-                flag = true;
-                break;
+            if(result.deletedCount === 1) {
+                let reloadedSet = userItemModel.getUserItems(userId);
+                reloadedSet.then(function (newList) {
+                    req.session.userItem = newList;
+                    res.render(viewpath + 'myitems', {items: req.session.userItem, data: data});
+                })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
             }
-        }
-            console.log(userItems);
-            res.render(viewpath + 'myitems', {items: userItems, data: data});
-        }
-
+        })
+            .catch(function (err) {
+                console.log(err);
+            })
+    }
 });
 
 module.exports = router;

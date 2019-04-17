@@ -4,7 +4,7 @@
 
 var UserItem = require('./userItem.model');
 
-class UserProfileModel {
+var userProfile = class UserProfileModel {
 
     /**
      * Constructor
@@ -12,15 +12,15 @@ class UserProfileModel {
      * @param userItemsList[]
      */
     constructor(userID, userItemsList) {
-        this._userID = userID;
-        this._userItemsList = userItemsList;
+        this.userID = userID;
+        this.userItemsList = userItemsList;
     }
 
     checkIfItemExists(userItemCode) {
 
-        for (let i=0; i < this._userItemsList.length; i++)
+        for (let i=0; i < this.userItemsList.length; i++)
         {
-            if (this._userItemsList[i]._itemCode == userItemCode) {
+            if (this.userItemsList[i]._itemCode === userItemCode) {
                 return true;
             }
         }
@@ -31,69 +31,79 @@ class UserProfileModel {
     addItem(userItem) {
 
         if(this.checkIfItemExists(userItem._itemCode)) {
-            return this._userItemsList;
+            return this.userItemsList;
         }
 
         else {
-            let useritem = new UserItem(this._userID, userItem._item, userItem._itemCode, userItem._itemCategory, userItem._rating, userItem._madeIt);
-            this._userItemsList.push(useritem);
-            return this._userItemsList;
+            let useritem = new UserItem(this._userID, userItem._itemName, userItem._itemCode, userItem._itemCategory, userItem._rating, userItem._madeIt);
+            this.userItemsList.push(useritem);
+            return this.userItemsList;
         }
 
     };
 
-    removeItem(userItem) {
+    deleteItem(userItem) {
         let valueExists = false;
 
-        for(let i=0; i < this._userItemsList.length; i++) {
-            if(this._userItemsList[i]._itemCode == userItem._itemCode) {
+        for(let i=0; i < this.userItemsList.length; i++) {
+            if(this.userItemsList[i]._itemCode == userItem._itemCode) {
                 console.log("Element found, removing...");
                 valueExists = true;
-                this._userItemsList.splice(i, 1);
+                this.userItemsList.splice(i, 1);
                 break;
             }
         }
 
         if(valueExists == false) {
             console.log('Error removing the value');
-            return this._userItemsList;
+            return this.userItemsList;
         } else {
             console.log('Value removed successfully');
-            return this._userItemsList;
+            return this.userItemsList;
         }
     };
 
-    updateItems(userItem) {
-        let valueExists = false;
-        for (let i = 0; i < this._userItemsList.length; i++) {
+    updateItem(userItem) {
 
-            if(this._userItemsList[i]._itemCode == userItem._itemCode) {
-                valueExists = true;
+        if(this.checkIfItemExists(userItem._itemCode)) {
+            let item = {};
+            item = userItem;
 
-                this.removeItem(userItem);
-                let useritem = new UserItem(this._userID, userItem._item, userItem._itemCode, userItem._itemCategory, userItem._rating, userItem._madeIt);
-                this._userItemsList.push(useritem);
+            if (userItem._madeIt === 'on') {
+                userItem._madeIt = 'Yes';
+            } else {
+                userItem._madeIt = 'No';
             }
 
-        }
+            if (userItem._rating != undefined) {
+                item._rating = userItem._rating;
+                item._madeIt = userItem._madeIt;
 
-        if(valueExists == false) {
-            return this._userItemsList;
-        } else {
-            return this._userItemsList;
+                for (let i = 0; i < this.userItemsList.length; i++) {
+                    if (this.userItemsList[i]._itemCode == item._itemCode) {
+                        this.userItemsList.splice(i, 1);
+                        let useritem = new UserItem(this._userID, userItem._itemName, userItem._itemCode, userItem._itemCategory, item._rating, item._madeIt);
+                        this.userItemsList.push(useritem);
+                        break;
+                    }
+
+                }
+            }
+
+            return this.userItemsList;
         }
 
     };
 
     getItems() {
-        return this._userItemsList;
+        return this.userItemsList;
     };
 
-    deleteItem() {
-        this._userItemsList = [];
-        return this._userItemsList;
+    deleteAll() {
+        this.userItemsList = [];
+        return this.userItemsList;
     };
-}
+};
 
 
-module.exports = UserProfileModel;
+module.exports = userProfile;

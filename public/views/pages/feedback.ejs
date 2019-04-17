@@ -25,13 +25,30 @@
             <div class="card home-card">
                 <h4><strong>Give your feedback</strong></h4>
                 <div class="media-div media-div-feedback">
-                    <img alt="A plate with lot of blueberry muffins" class="item-detail-card-img" src=<%= data._imageURL %>>
+                    <img alt="<%= data[0].itemName %>" class="item-detail-card-img" src=<%= data[0].imageURL %>>
                 </div>
                 <form action="/userProfile/feedbackManager" method="POST">
                 <div id="recipe-title-feedback">
-                    <h2><b><%= data._itemName %></b></h2>
-                    <h3 class="feedback-cat"><%= data._itemCategory %></h3>
+                    <div><h4><b><%= data[0].itemName %></b></h4></div>
+                    <div><h5><b>Category : <%= data[0].catalogCategory %></b></h5></div>
+                    <div><h5>
+                        <b>Current Rating :
+                            <ul>
+                                <%
+                                for(var j=0; j < item[0].rating; j++){ %>
+                            <li><i class="fa fa-star"></i></li>
+                            <% } %>
+                            </ul>
+                        </b>
+                    </h5></div>
+                    <div><h5><b>Made it? <% if(item[0].madeIt == true) {%>
+                                <input type="checkbox" name="madeit_or_not" value="madeit" checked disabled><br>
+                            <% } else {%>
+                                <input type="checkbox" name="madeit_or_not" value="madeit" disabled><br>
+                            <%}%></b></h5></div>
+                    <h3 class="feedback-cat"><%= data[0].itemCategory %></h3>
                     <p class="feedback-desc"></p>
+                    <p>Would you like to rate better?</p>
                     <select id="rating" placeholder="Select any" class="form-input" name="ratingSelection" required>
                         <option value="" selected disabled hidden>Choose here</option>
                         <option value="1">1</option>
@@ -40,9 +57,13 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select><br>
-                    <input type="hidden" name="itemCode" value="<%= data._itemCode %>">
+                    <input type="hidden" name="itemCode" value="<%= data[0].itemCode %>">
+                    <input type="hidden" name="itemName" value="<%= data[0].itemName %>">
+                    <input type="hidden" name="itemCategory" value="<%= data[0].catalogCategory %>">
+                    <label>
+                        <input type="checkbox" name="madeIt" class="btn-space">
+                    </label> I made it <br>
                     <input type="submit" name="confirmRating" class="btn btn-space" value="Confirm rating"><br>
-                    <input type="checkbox" name="madeIt" class="btn-space"> I made it <br>
                 </div>
                 </form>
             </div>

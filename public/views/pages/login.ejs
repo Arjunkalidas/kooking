@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- views/partials/head.ejs -->
+    <title><%= data.title %></title>
+    <% include ../partials/head %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<!--  logo of the brand here-->
+<div class="modal" style="display:block">
+<div class="modal-content" style="width:30%" >
+    <div><h2>Login/Sign up</h2></div>
+    <div id="login-form" >
+        <form action="/userProfile/myProfile" method="POST" class="form-group">
+            <input type="text" name="username" placeholder="Username" class="form-input" maxlength = "30" required><br>
+            <input type="password" name="password" placeholder="password" class="form-input" maxlength = "30" required><br>
+            <input type="submit" value="Submit" class="btn btn-space">
+        </form>
+        <% if (flag) {%>
+            <p>Please enter a valid username and password</p>
+        <%}%>
+    </div>
+</div>
+</div>
+<header class="banner">
+    <!-- views/partials/header.ejs -->
+    <% include ../partials/header %>
+</header>
+
+<!-- The user specific menu goes here -->
+<!-- views/partials/user-navigation.ejs -->
+<% include ../partials/user-navigation %>
+
+<main class="main-categories">
+    <!-- views/partials/site-navigation.ejs -->
+    <% include ../partials/site-navigation %>
+
+</main>
+
+<footer class="site-footer">
+    <!-- views/partials/footer.ejs -->
+    <% include ../partials/footer %>
+</footer>
+</body>
+</html>
