@@ -31,3 +31,13 @@ validations and checks as deemed necessary.
         requested item model from the database and sending that data to the item view for display.
 15. Dynamic user profile functionality was implemented and session were used to store
 data.
+
+Usage instructions:
+* Download the "public" folder as zip or clone the repository
+* Navigate to the folder in the terminal and run "npm install" - this will install all the dependencies mentioned as per the "package.json" file.
+* Launch a mongodb session in one terminal
+* Open another terminal window to run the database script to setup database using mongodb.
+* Run the command "mongo hw4_create_db.txt" to setup db
+* Run npm start to launch a session and in the browser, navigate to "localhost:3000/"
+
+
