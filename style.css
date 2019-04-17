@@ -1,0 +1,544 @@
+@charset "UTF-8";
+
+article, aside, footer, header, main, nav, section {
+  display: block;
+}
+
+html, body, h1, h2, h3, ul, li, a, p, article, aside,
+footer, header, main, nav, div, section, img {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+}
+
+.banner {
+  /* background-color: #8ebabd; */
+  position: relative;
+  color: white;
+  height: 300px;
+  /* Use "linear- gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("images/banner.png");
+  /* Set a specific height */
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#holder {
+  margin: 40px 30px 0px 30px;
+  position:absolute;
+  width:96%;
+}
+
+#logo_holder{
+  float: left;
+  height: 100%;
+}
+
+.logo_img {
+  float: left;
+  height: 70px;
+}
+
+/* title div */
+.title {
+  float: left;
+  height: 100%;
+  width: 15%;
+  text-align: center;
+  padding: 5px 0px 0px 30px;
+}
+
+/* KooKING */
+#banner_title {
+  float: left;
+}
+
+/* slogan */
+.title p {
+  float: left;
+  padding-top: 10px;
+}
+
+/* icon holder div */
+#user-icon-holder {
+  float: right;
+  height: 100%;
+  width:7%;
+}
+
+/* the icon png */
+#user-icon p{
+  padding-top: 15px;
+  font-family: Helvetica, sans-serif, Arial;
+  font-size: 15px;
+}
+#user-icon {
+  text-align: center;
+}
+
+.user_nav ul li a {
+  color: black;
+  font-family: sans-serif;
+  font-size: 17px;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.user_nav {
+  height: 40px;
+  width: 100%;
+}
+
+.user_nav li {
+  display: inline;
+  float: left;
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  position: relative;
+  line-height: 40px;
+  margin-right: -3px;
+  margin-left: -3px;
+  white-space: nowrap;
+  padding: 5px 25px;
+}
+
+.user_nav ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  display: flex;
+  box-sizing: border-box;
+  float:right;
+}
+
+.user_nav li:hover {
+  cursor: pointer;
+}
+
+.user_nav ul li a:hover {
+  color: #F21923;
+}
+
+.user_nav ul li ul {
+  background-color: white;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  display: none;
+}
+
+.user_nav ul li:hover > ul,
+.user_nav ul li ul:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+.user_nav ul li ul li {
+  clear: both;
+  width: 100%;
+  text-align: left;
+}
+/* dropdown */
+.user_nav li ul {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  visibility: hidden;
+  z-index: 99;
+}
+
+/* Breadcrumb navigation */
+.breadcrumb-navigation {
+  width: 80%;
+  padding-left: 20px;
+}
+
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+}
+
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: ">\00a0";
+}
+
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+aside {
+  float: left;
+  width: 15%;
+  white-space: nowrap;
+  margin-top: 10px;
+  margin-left:10px;
+  overflow: auto;
+}
+
+.main-nav-link {
+  color: #000;
+  text-decoration: none;
+}
+
+aside ul li {
+  list-style-type: none;
+  padding: 10px;
+  color: black;
+  font-weight: bold;
+  pointer:cursor;
+}
+
+aside ul li:hover {
+  background-color: #F21923;
+  text-decoration: none;
+}
+
+aside ul li:hover {
+  color: white;
+}
+
+.red-hover {
+  background-color: #F21923;
+  color: white;
+}
+
+/* Home Page specific CSS */
+.home-image {
+  width: 150px;
+}
+
+.home-card-img {
+  width: 150px;
+  height: 100px;
+}
+
+.home-card {
+  width:80% !important;
+}
+
+.home-card h4 {
+  width: 20%;
+  padding-left: 10px;
+  font-size: 24px;
+}
+
+.home-card img {
+  float: left;
+  margin: 0 10px 10px 10px;
+}
+
+.home-card p{
+  text-align: justify;
+  margin: 0 10px 15px 8px;
+}
+
+/* Categories page specific css */
+.main-categories {
+  width: 100%;
+}
+
+.card-row {
+  display: block;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  width: 81%;
+  height: inherit;
+  float:right;
+}
+
+.card-row h3 {
+  text-align: left;
+}
+
+@media only screen and (max-width: 700px) {
+  .main {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .main {
+    width: 100%;
+  }
+}
+
+.card {
+  float: left;
+  display: block;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.5s;
+  padding: 7px 8px;
+  margin: 10px;
+}
+
+.card img {
+  height: 300px;
+  width: 250px;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  z-index: 2;
+  -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.01);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.01);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.01);
+    transition: all 200ms ease-in;
+    transform: scale(1.01);
+}
+
+.card-container h4 {
+  color: #000;
+  text-align: center;
+}
+
+.container {
+  padding: 1px 10px;
+}
+
+/* item detail page specific css */
+.item-detail-card-img {
+  width: 300px !important;
+}
+
+#recipe-title {
+  float: left;
+  width:40%;
+  padding: 70px 0 0 30px;
+}
+
+#recipe-title h3 {
+  padding-top: 10px;
+}
+
+#category {
+  float: left;
+}
+
+#recipe-title ul {
+  padding-top: 10px;
+}
+
+.media-div {
+  overflow: auto;
+  padding: 10px 0 0 10px;
+}
+
+#save-n-rate {
+  padding-left: 12px;
+  overflow: auto;
+}
+
+#save-n-rate .btn {
+
+  border-radius: 8px;
+  height: 30px;
+  width: 150px;
+  margin: 5px;
+}
+
+#main-content {
+  overflow: auto;
+}
+
+#main-content p h3 {
+  float: left;
+  all: inherit;
+  text-align: justify; !important
+  margin: 0 10px 15px 8px; !important
+}
+
+#intro {
+  overflow: auto;
+}
+
+#intro h3 {
+  padding: 20px 0 0 20px;
+}
+
+#intro p {
+  all: inherit;
+  padding: 0 0 0 10px;
+  float: right; !important;
+  text-align: justify; !important;
+  margin: 0 10px 10px 8px; !important;
+}
+
+#detail-1 {
+  overflow: auto;
+  padding: 0 0 0 30px;
+}
+
+#detail-1 ul li {
+  padding: 0 0 5px 0;
+}
+
+#detail-1 p {
+  padding: 0 0 0 30px;
+}
+
+#detail-2 {
+  overflow: auto;
+}
+
+#detail-2 h3 {
+  padding: 0 0 0 20px;
+}
+
+#detail-2 p {
+  all: inherit;
+  padding: 0 0 0 10px;
+  float: right; !important;
+  text-align: justify; !important;
+  margin: 0 10px 15px 8px; !important;
+}
+
+#user-name {
+  width: 50%;
+  margin: 20px 0 0 10px;
+  word-wrap: break-word;
+  white-space: nowrap;
+}
+
+#bookmark-table {
+  overflow: auto;
+  margin: 10px 10px 10px 10px;
+}
+
+table {
+  font-family: arial, sans-serif !important;
+  border-collapse: collapse;
+  width: 100%;
+  overflow: auto;
+}
+
+td, th {
+  text-align: left;
+  padding: 8px;
+}
+.padright{
+  padding-right: 10px;
+}
+tr:nth-child(even) {
+  background-color: #FEB2A1;
+}
+
+.footnote {
+  width: 50%;
+  float: left;
+  margin: 50px 0 0 20px;
+}
+
+.footnote-bookmark {
+  float: left;
+}
+
+.footnote p {
+  all: inherit;
+  width: 70%; !important;
+  float: left; !important;
+  text-align: justify; !important;
+  margin: 0 10px 15px 8px; !important;
+}
+
+.site-footer {
+  background-color: #282C35;
+  clear: both;
+  color: #ADB0B6;
+  padding:3%;
+  overflow: auto;
+}
+
+.site-footer hr {
+  border-top-color:#ADB0B6;
+  opacity:0.5;
+  margin-left: 2%;
+  width: 90%;
+  overflow:auto;
+}
+.footer-row{
+  width: 45%;
+  float:left;
+  margin: 15px;
+}
+
+.footer-row h2 {
+  padding: 0 0 5px 0;
+}
+
+.container {
+  overflow: auto;
+}
+
+.about-text {
+  word-wrap: break-word;
+  text-align: justify;
+}
+
+#copyright-div {
+  text-align: center;
+}
+
+#copyright-div a {
+  color: #ADB0B6;
+  text-decoration: none;
+}
+
+.social-media-section {
+  width: 25%;
+  float: right;
+}
+
+.social-media-section ul {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.social-media-section ul li {
+  display: inline;
+ }
+
+.social-media-section ul li a{
+  width:20%;
+  height:20%;
+}
+
+.copyright-text {
+  padding-top: 10px;
+}
+
+.copyright-text a {
+  color: #ADB0B6;
+  text-decoration: none;
+}
+.fa-facebook-square,.fa-instagram,.fa-twitter-square,.fa-pinterest-square{
+  color:#fff;
+  padding-left:15px;
+}
