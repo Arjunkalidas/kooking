@@ -11,9 +11,9 @@ Hovering over the cards gives a smooth animation that gives a perception of lift
 
 ## Technical Stack
 
-I have used an MVC approach with Views, Routes, Express Middleware, Sessions and Database integration. 
-HTML5 pages are validated for errors after every iteration.
-EJS templating is used for pages to present the view to the browser.
+1. I have used an MVC approach with Views, Routes, Express Middleware, Sessions and Database integration. 
+2. HTML5 pages are validated for errors after every iteration.
+3. EJS templating is used for pages to present the view to the browser.
 Implemented “Sign in” and “Sign out” features by using node.js sessions.
 Users can find a modal window for sign in
 mongoDB is used here for database part of the application.
